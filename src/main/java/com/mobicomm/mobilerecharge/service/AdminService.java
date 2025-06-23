@@ -119,7 +119,7 @@ public class AdminService {
                 .map(recharge -> new RechargeHistoryResponse(
                         recharge.getId(),
                         recharge.getPlan().getName(),
-                        recharge.getAmount(),
+                        recharge.getPlan().getAmount(), // Updated to use plan.amount
                         recharge.getPaymentMode(),
                         recharge.getRechargeDate(),
                         recharge.getExpiryDate()))

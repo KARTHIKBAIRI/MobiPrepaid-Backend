@@ -25,10 +25,7 @@ public class Recharge {
     private Plan plan;
 
     @NotBlank(message = "Payment mode is mandatory")
-    private String paymentMode; // e.g., PENDING, UPI, Card, Bank Transfer
-
-    @NotNull(message = "Amount is mandatory")
-    private Double amount;
+    private String paymentMode;
 
     @NotNull(message = "Recharge date is mandatory")
     private Date rechargeDate;
@@ -38,11 +35,10 @@ public class Recharge {
 
     public Recharge() {}
 
-    public Recharge(User user, Plan plan, String paymentMode, Double amount, Date rechargeDate, Date expiryDate) {
+    public Recharge(User user, Plan plan, String paymentMode, Date rechargeDate, Date expiryDate) {
         this.user = user;
         this.plan = plan;
         this.paymentMode = paymentMode;
-        this.amount = amount;
         this.rechargeDate = rechargeDate;
         this.expiryDate = expiryDate;
     }
@@ -56,8 +52,6 @@ public class Recharge {
     public void setPlan(Plan plan) { this.plan = plan; }
     public String getPaymentMode() { return paymentMode; }
     public void setPaymentMode(String paymentMode) { this.paymentMode = paymentMode; }
-    public Double getAmount() { return amount; }
-    public void setAmount(Double amount) { this.amount = amount; }
     public Date getRechargeDate() { return rechargeDate; }
     public void setRechargeDate(Date rechargeDate) { this.rechargeDate = rechargeDate; }
     public Date getExpiryDate() { return expiryDate; }

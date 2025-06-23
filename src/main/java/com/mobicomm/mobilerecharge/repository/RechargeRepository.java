@@ -16,7 +16,7 @@ public interface RechargeRepository extends JpaRepository<Recharge, Long> {
     @Query("SELECT r FROM Recharge r WHERE r.user = :user AND r.rechargeDate = (SELECT MAX(r2.rechargeDate) FROM Recharge r2 WHERE r2.user = :user)")
     Optional<Recharge> findLatestByUser(@Param("user") User user);
 
-    // Placeholder: Replace with actual findExpiringRecharges implementation after you share it
+
     @Query("SELECT r FROM Recharge r WHERE r.expiryDate BETWEEN :start AND :end")
     List<Recharge> findExpiringRecharges(@Param("start") Date start, @Param("end") Date end);
 

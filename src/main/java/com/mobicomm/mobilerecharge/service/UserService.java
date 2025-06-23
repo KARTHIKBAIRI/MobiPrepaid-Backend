@@ -103,7 +103,7 @@ public class UserService {
         calendar.add(Calendar.DAY_OF_MONTH, plan.getValidityDays());
         Date expiryDate = calendar.getTime();
 
-        Recharge recharge = new Recharge(user, plan, "PENDING", plan.getAmount(), rechargeDate, expiryDate);
+        Recharge recharge = new Recharge(user, plan, "PENDING", rechargeDate, expiryDate); // Removed amount
         recharge = rechargeRepository.save(recharge);
         return recharge.getId();
     }
@@ -119,7 +119,7 @@ public class UserService {
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             String emailBody = String.format(
                     "Dear %s,\n\nYour recharge for mobile number %s has been successful.\nPlan: %s\nAmount: %.2f\nPayment Mode: %s\nRecharge Date: %s\nExpiry Date: %s\n\nThank you,\nMobi-Comm Services",
-                    user.getName(), user.getMobileNumber(), recharge.getPlan().getName(), recharge.getAmount(),
+                    user.getName(), user.getMobileNumber(), recharge.getPlan().getName(), recharge.getPlan().getAmount(), // Updated to use plan.amount
                     request.getPaymentMode(), dateFormat.format(recharge.getRechargeDate()), dateFormat.format(recharge.getExpiryDate()));
             emailService.sendConfirmationEmail(user.getEmail(), "Recharge Confirmation", emailBody);
             System.out.println("Confirmation email sent to: " + user.getEmail());
